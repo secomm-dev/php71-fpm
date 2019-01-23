@@ -13,7 +13,7 @@ freetype-dev \
 libpng \
 libpng-dev \
 libjpeg-turbo \
-libjpeg-turbo-dev g++ make autoconf ssh
+libjpeg-turbo-dev g++ make autoconf openssh
 
 RUN docker-php-ext-install mcrypt pdo_mysql soap \
 && rm -rf /tmp/*
