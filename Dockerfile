@@ -24,7 +24,7 @@ RUN apk add --update --no-cache \
         gd mcrypt xsl intl pdo_mysql mysqli zip soap opcache \
     && rm -rf /tmp/* \
     # Install composer globally
-    && echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini"
+    && echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
     && curl -sS https://getcomposer.org/installer | \
         php -- --install-dir=/usr/bin/ --filename=composer
 
