@@ -14,7 +14,7 @@ RUN apk add --update --no-cache \
         # intl
         icu-dev \ 
         # Other
-        openssh \
+        openssh zlib-dev \
     && docker-php-ext-configure \
         gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
         --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/ \
