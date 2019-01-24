@@ -10,7 +10,7 @@ RUN apk add --update --no-cache \
         # intl
         icu-dev \
         # composer
-        curl git subversion zlib-dev \
+        curl git subversion openssh zlib-dev \
     && docker-php-ext-configure \
        gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/ \
     && docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) \
