@@ -27,6 +27,9 @@ RUN mkdir /docker-entrypoint-initphp.d
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
+USER www-data
+WORKDIR /var/www/html
+
 CMD ["php-fpm"]
 
 #RUN  dpkg-reconfigure -f noninteractive tzdata
