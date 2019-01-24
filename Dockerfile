@@ -1,4 +1,4 @@
-FROM php:7.1.4-fpm-alpine
+FROM php:7.1-fpm-alpine
 
 RUN apk add --update --no-cache \
         # gd
@@ -8,19 +8,17 @@ RUN apk add --update --no-cache \
         # xsl
         libxslt-dev \ 
         # intl
-        icu-dev \ 
-        # Other
-        openssh zlib-dev pcre-dev \
+        icu-dev \
+        # composer
+        curl git subversion zlib-dev \
     && docker-php-ext-configure \
-        gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-        --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/ \
+       gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/ \
     && docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) \
-    # intl iconv mcrypt gd pdo_mysql zip soap json xsl mbstring 
-    # simplexml xml opcache
-        gd mcrypt xsl intl pdo_mysql mysqli zip soap opcache \
-    && rm -rf /tmp/* \
+       # intl iconv mcrypt gd pdo_mysql zip soap json xsl mbstring simplexml xml opcache
+       gd mcrypt xsl intl pdo_mysql mysqli zip soap \
+    && rm -rf /tmp/* 
     # Install composer globally
-    && echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
+RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
     && curl -sS https://getcomposer.org/installer | \
         php -- --install-dir=/usr/bin/ --filename=composer
 
