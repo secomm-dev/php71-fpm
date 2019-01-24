@@ -1,10 +1,7 @@
 FROM php:7.1.4-fpm-alpine
 
 RUN apk add --update --no-cache \
-        git \
-        mysql-client \
-        curl \
-        mc \
+        git mysql-client curl mc \
         # gd
         freetype-dev libpng-dev libwebp-dev jpeg-dev \
         # mcrypt
@@ -14,7 +11,7 @@ RUN apk add --update --no-cache \
         # intl
         icu-dev \ 
         # Other
-        openssh zlib-dev \
+        openssh zlib-dev pcre-dev \
     && docker-php-ext-configure \
         gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
         --with-webp-dir=/usr/include/ --with-freetype-dir=/usr/include/ \
